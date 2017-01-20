@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour {
 
-	public float spawnInterval = 3f;
+	public float spawnInterval = 0.5f;
 	public GameObject asteroid;
 
 	private float currSpawnInterval = 0f;
@@ -22,6 +22,8 @@ public class AsteroidSpawner : MonoBehaviour {
 			currSpawnInterval = 0f;
 		}
 	}
+
+
 
 	void spawnAsteroid() {
 		GameObject.Instantiate (asteroid,transform.position, Quaternion.identity);
