@@ -11,7 +11,7 @@ public class Health : MonoBehaviour {
 	private bool hasTriggerGameOver = false;
 
 	void Awake () {
-		GameEventManager.GameStart += ResetHealth ();
+		GameEventManager.GameStart += ResetHealth;
 	}
 
 	void Start() {
