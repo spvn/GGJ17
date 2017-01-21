@@ -5,6 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour {
 
 	public float speed = 1f;
+	public float rotateSpeed = 10f;
 
 	private Vector3 direction;
 	// Use this for initialization
@@ -16,5 +17,6 @@ public class Asteroid : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += direction * speed * Time.deltaTime;
+		transform.Rotate (Vector3.forward * rotateSpeed * Time.deltaTime);
 	}
 }
