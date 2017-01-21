@@ -20,4 +20,5 @@ public class BossMovement : MonoBehaviour {
 		timer += Time.deltaTime;
 		transform.position = startPos + new Vector3 (maxX * Mathf.Sin (xAxisSpeed* timer),0f,0f);
 	}
+
 }
