@@ -57,13 +57,14 @@ public class Health : MonoBehaviour {
 	}
 
 	IEnumerator GetHitFlash() {
-		while (timer < invulnerabilityPeriod) {
+		float t = 0f;
+		while (t < invulnerabilityPeriod) {
 			if (renderer.material.color == Color.white) {
 				renderer.material.SetColor ("_Color", redColor);
 			} else {
 				renderer.material.SetColor ("_Color", Color.white);
 			}
-			timer += 0.1f;
+			t += 0.1f;
 			yield return null;
 		}
 		renderer.material.SetColor ("_Color", Color.white);
