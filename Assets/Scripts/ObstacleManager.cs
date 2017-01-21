@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour {
 
 	public static int enemyCount = 0;
-	public static int maxEnemyCount = 1;
+	public static int maxEnemyCount = 3;
 	// Use this for initialization
 	void Start () {
 		
