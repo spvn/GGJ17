@@ -24,6 +24,7 @@ public class PlayerCollision : MonoBehaviour {
 						playerHealth.addHealth ();
 						pup.collectPowerup ();
 					} else if (other.tag == "Shield") {
+						playerShield.activateShield (2f);
 						pup.collectPowerup ();
 					} else if (other.tag == "ShootBoost") {
 						playerShoot.boostShooting ();

@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour {
 
+	public Health playerHealth;
 	public AudioSource[] shieldSfx;
 
 	private SpriteRenderer sp;
 	private bool isShieldActive = false;
 	private float shieldActiveTime;
-	private float timer = 0f;
 
 	void Start () {
 		sp = GetComponent<SpriteRenderer> ();
 	}
 
-	void Update () {
-		
-	}
-		
-	void DeactiveShield () {
+	public void deactiveShield () {
 		isShieldActive = false;
 
 		sp.enabled = false;
-		timer = 0f;
+		shieldSfx [1].Play ();
 	}
 
 	public void activateShield (float activePeriod){
 		isShieldActive = true;
 		sp.enabled = true;
+		playerHealth.shieldPlayer (activePeriod);
 
 		shieldActiveTime = activePeriod;
 		shieldSfx [0].Play ();

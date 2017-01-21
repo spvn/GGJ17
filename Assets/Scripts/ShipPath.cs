@@ -8,7 +8,8 @@ public class ShipPath : MonoBehaviour {
 	public Transform playerShip;
 	public Transform destination;
 
-	private bool move = false;
+	[HideInInspector]
+	public bool move = false;
 	private Vector3 startPosition;
 	private float distance;
 	private float timer = 0f;
@@ -17,6 +18,7 @@ public class ShipPath : MonoBehaviour {
 		GameEventManager.TitleScreen += Reset;
 		GameEventManager.GameStart += StartMovement;
 		GameEventManager.GameOver += StopMovement;
+		GameEventManager.GameWin += StopMovement;
 
 		startPosition = transform.position;
 	}

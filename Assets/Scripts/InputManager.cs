@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour {
 		GameEventManager.GameStart += setIsInGame;
 		GameEventManager.TitleScreen += setIsNotInGame;
 		GameEventManager.GameOver += setIsNotInGame;
+		GameEventManager.GameWin += setIsNotInGame;
 	}
 
 	void Update () {

@@ -11,6 +11,9 @@ public class Powerup : MonoBehaviour {
 	public bool gotCollected = false;
 
 	void Start() {
+		GameEventManager.GameOver += Clear;
+		GameEventManager.GameWin += Clear;
+
 		sp = GetComponent<SpriteRenderer> ();
 	}
 
@@ -25,5 +28,9 @@ public class Powerup : MonoBehaviour {
 
 		sp.enabled = false;
 		collectedSfx.Play ();
+	}
+
+	private void Clear(){
+		Destroy (gameObject);
 	}
 }

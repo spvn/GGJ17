@@ -22,6 +22,7 @@ public class PlayerShoot : MonoBehaviour {
 		GameEventManager.TitleScreen += StopShooting;
 		GameEventManager.GameStart += StartShooting;
 		GameEventManager.GameOver += StopShooting;
+		GameEventManager.GameWin += StopShooting;
 
 		originalShootInterval = shootInterval;
 	}
