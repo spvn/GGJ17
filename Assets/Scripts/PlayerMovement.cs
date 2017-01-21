@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour {
 			HandleInput ();
 
 			if (!isHolding || !holdValid) {
+				if (holdLimit == 0) {
+					allowMovement = false;
+					return;
+				}
 				timeCount += Time.deltaTime * holdCounter / holdLimit;
 		//		if (maxSobrietyChanged) {
 				//	float diff = holdLimit - Health.currentMaxSobriety;
@@ -50,6 +54,10 @@ public class PlayerMovement : MonoBehaviour {
 				//	holdCounter += diff;
 			//	}
 			} else {
+				if (holdLimit == 0) {
+					allowMovement = false;
+					return;
+				}
 				timeCount += Time.deltaTime * Mathf.Pow (holdCounter / holdLimit, 4f);
 			}
 
@@ -58,7 +66,10 @@ public class PlayerMovement : MonoBehaviour {
 				0f,
 				0f
 			);
-
+			if (holdLimit == 0) {
+				allowMovement = false;
+				return;
+			}
 			Vector3 calculatedBoost = boost * Mathf.Pow ((1f - Mathf.Pow ((holdCounter / holdLimit), 2f)), 1f);
 			transform.position = new Vector3 (
 				transform.position.x, 
