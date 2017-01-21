@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour {
 			timer+=Time.deltaTime;
 		} else {
 			timer = 0f;
-			Debug.Log ("here");
 			SpawnEnemy ();
 		}
 	}
