@@ -65,10 +65,8 @@ public class PlayerMovement : MonoBehaviour {
 				transform.position.y + calculatedBoost.y,
 				transform.position.z
 			);
-
-			//transform.LookAt ();
 		}
-	//	Debug.Log (calculatedBoost);
+			Debug.Log (holdLimit);
 	}
 
 	private void StartMovement() {
