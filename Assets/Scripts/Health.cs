@@ -113,7 +113,7 @@ public class Health : MonoBehaviour {
 	}
 
 	public float getHealthProportion() {
-		Debug.Log (currentMaxSobriety / startingSobriety);
+//		Debug.Log (currentMaxSobriety / startingSobriety);
 		return currentMaxSobriety / startingSobriety;
 	}
 

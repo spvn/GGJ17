@@ -34,19 +34,21 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update () {
 		if (allowMovement) {
-			if (holdLimit != Health.currentMaxSobriety) {
+		/*	if (holdLimit != Health.currentMaxSobriety) {
 				maxSobrietyChanged = true;
 			} else {
 				maxSobrietyChanged = false;
 			}
-	
+	*/
 			HandleInput ();
 
 			if (!isHolding || !holdValid) {
 				timeCount += Time.deltaTime * holdCounter / holdLimit;
-				if (maxSobrietyChanged) {
-					holdLimit = Health.currentMaxSobriety;
-				}
+		//		if (maxSobrietyChanged) {
+				//	float diff = holdLimit - Health.currentMaxSobriety;
+				//	holdLimit = Health.currentMaxSobriety;
+				//	holdCounter += diff;
+			//	}
 			} else {
 				timeCount += Time.deltaTime * Mathf.Pow (holdCounter / holdLimit, 4f);
 			}
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
 				transform.position.z
 			);
 
+			//transform.LookAt ();
 		}
 	//	Debug.Log (calculatedBoost);
 	}
