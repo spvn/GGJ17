@@ -38,7 +38,7 @@ public class BossMovement : MonoBehaviour {
 	}
 
 	private void Clear(){
-		Destroy (gameObject);
+		Destroy (this.gameObject);
 	}
 
 	private void Reset(){

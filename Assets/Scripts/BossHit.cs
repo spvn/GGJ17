@@ -8,19 +8,23 @@ public class BossHit : MonoBehaviour {
 	public bool isHit;
 	public float HP = 100f;
 
-	// Use this for initialization
+	private bool hasTriggeredWin = false;
+
+	void Avoid() {
+		GameEventManager.GameWin += Clear;
+	}
+
 	void Start () {
 		rend = this.GetComponent<Renderer> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if(isHit){
 			StartCoroutine (hitAnimation(1));
 			isHit = false;
 		}
 
-		if (HP <= 0) {
+		if (HP <= 0 && !hasTriggeredWin) {
 			KillBoss ();
 		}
 	}
@@ -39,6 +43,11 @@ public class BossHit : MonoBehaviour {
 	}
 
 	void KillBoss(){
+		hasTriggeredWin = true;
 		GameEventManager.TriggerGameWin ();
+	}
+
+	private void Clear() {
+		Destroy (this.gameObject);
 	}
 }

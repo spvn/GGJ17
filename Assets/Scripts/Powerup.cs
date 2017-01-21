@@ -10,6 +10,8 @@ public class Powerup : MonoBehaviour {
 	[HideInInspector]
 	public bool gotCollected = false;
 
+	private bool isDeadAlr = false;
+
 	void Start() {
 		GameEventManager.GameOver += Clear;
 		GameEventManager.GameWin += Clear;
@@ -18,11 +20,11 @@ public class Powerup : MonoBehaviour {
 	}
 
 	void Update() {
-		if (gotCollected && !collectedSfx.isPlaying) {
-			if (gameObject) {
-				Destroy (gameObject);
+	//	if (gameObject && !isDeadAlr) {
+			if (gotCollected && !collectedSfx.isPlaying) {
+				Destroy (this.gameObject);
 			}
-		}
+		//}
 	}
 
 	public void collectPowerup(){
@@ -33,8 +35,8 @@ public class Powerup : MonoBehaviour {
 	}
 
 	private void Clear(){
-		if (gameObject) {
-	//		Destroy (gameObject);
-		}
+	//	if (gameObject && !isDeadAlr) {
+			Destroy (this.gameObject);
+	//	}
 	}
 }
