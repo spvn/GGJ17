@@ -13,12 +13,12 @@ public class Thruster : MonoBehaviour {
 	void Awake(){
 		GameEventManager.TitleScreen += ShowThruster;
 		GameEventManager.GameOver += DontShowThruster;
-	}
 
-	void Start () {
 		pmovement = GetComponentInParent<PlayerMovement> ();
 		sr = GetComponent<SpriteRenderer> ();
-	
+	}
+
+	void Start () {	
 		originalLocalScale = transform.localScale;
 	}
 	
