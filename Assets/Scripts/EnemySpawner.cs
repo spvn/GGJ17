@@ -20,14 +20,14 @@ public class EnemySpawner : MonoBehaviour {
 			timer+=Time.deltaTime;
 		} else {
 			timer = 0f;
-			Debug.Log ("here");
 			SpawnEnemy ();
 		}
 	}
 
 	void SpawnEnemy() {
 		if (ObstacleManager.enemyCount < ObstacleManager.maxEnemyCount) {
-			for (int i = 0; i < ObstacleManager.maxEnemyCount; i++) {
+			int numToSpawn = ObstacleManager.maxEnemyCount - ObstacleManager.enemyCount;
+			for (int i = 0; i < numToSpawn; i++) {
 				int sideToSpawn = Random.Range (0, 2);
 
 				float xPos;
