@@ -39,4 +39,9 @@ public class Powerup : MonoBehaviour {
 			Destroy (this.gameObject);
 	//	}
 	}
+
+	void OnDestroy() {
+		GameEventManager.GameOver -= Clear;
+		GameEventManager.GameWin -= Clear;
+	}
 }

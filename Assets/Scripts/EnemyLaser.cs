@@ -20,4 +20,8 @@ public class EnemyLaser : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	void OnDestroy() {
+		GameEventManager.TitleScreen -= Clear;
+	}
 }

@@ -50,4 +50,9 @@ public class BossMovement : MonoBehaviour {
 	private void Stop(){
 		move = false;
 	}
+
+	void OnDestroy() {
+		GameEventManager.TitleScreen -= Clear;
+		GameEventManager.GameWin -= Stop;
+	}
 }

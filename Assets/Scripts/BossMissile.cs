@@ -18,4 +18,8 @@ public class BossMissile : MonoBehaviour {
 	private void Clear(){
 		Destroy (gameObject);
 	}
+
+	void OnDestroy() {
+		GameEventManager.TitleScreen -= Clear;
+	}
 }
