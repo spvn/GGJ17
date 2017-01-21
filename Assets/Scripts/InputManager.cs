@@ -21,15 +21,20 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKey (KeyCode.Space)) {
-			if (isInGame) {
+		if (isInGame) {
+			if (Input.GetKey (KeyCode.Space)) {
 				spaceInput = SpaceInput.FOR_MOVEMENT;
 			} else {
-				spaceInput = SpaceInput.FOR_UI;
+				spaceInput = SpaceInput.NO_INPUT;
 			}
 		} else {
-			spaceInput = SpaceInput.NO_INPUT;
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				spaceInput = SpaceInput.FOR_UI;
+			} else {
+				spaceInput = SpaceInput.NO_INPUT;
+			}
 		}
+
 	//	Debug.Log (spaceInput);
 	}
 

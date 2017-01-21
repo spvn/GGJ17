@@ -14,7 +14,7 @@ public class PlayerCollision : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 	//	Debug.Log (other.name + " hit the player");
 
-		if (other.gameObject.layer != LayerMask.NameToLayer("PlayerShots")){
+	//	if (other.gameObject.layer != LayerMask.NameToLayer("PlayerShots")){
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Powerups")) {
 				Powerup pup = other.GetComponent<Powerup> ();	
 
@@ -29,6 +29,6 @@ public class PlayerCollision : MonoBehaviour {
 			} else {
 				playerHealth.reduceHealth ();
 			}
-		}
+	//	}
 	}
 }
