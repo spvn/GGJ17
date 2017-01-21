@@ -14,9 +14,9 @@ public class EnemyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0,Camera.main.pixelWidth), Random.Range(Camera.main.pixelHeight/2f, Camera.main.pixelHeight), Camera.main.nearClipPlane));
-
+		targetPosition = new Vector3 (targetPosition.x, targetPosition.y, 0f);
 		origPos = transform.position;
-		Debug.Log (origPos + " " + targetPosition);
+		//Debug.Log (origPos + " " + targetPosition);
 		StartCoroutine (moveToPos(origPos, targetPosition, initialMovementTime));
 	}
 	
@@ -24,8 +24,11 @@ public class EnemyScript : MonoBehaviour {
 	void Update () {
 		if (reachedPos) {
 			Vector3 movementVector = new Vector3 (Random.Range (-movementRange, movementRange), Random.Range (-movementRange, movementRange), 0f);
-			reachedPos = false;
-			StartCoroutine (moveToPos (transform.position, transform.position + movementVector, 1f));
+			Vector3 finalPos = movementVector + transform.position;
+			if (isWithinView (finalPos)) {
+				reachedPos = false;
+				StartCoroutine (moveToPos (transform.position, transform.position + movementVector, 1f));
+			}
 
 		}
 	}
@@ -40,5 +43,10 @@ public class EnemyScript : MonoBehaviour {
 		}
 
 		reachedPos = true;
+	}
+
+	private bool isWithinView (Vector3 pos) {
+		Vector3 viewportPoint = Camera.main.WorldToViewportPoint (pos);
+		return (viewportPoint.z > 0 &&  (new Rect(0.1f, 0.5f, 0.9f, 0.9f)).Contains(viewportPoint));			
 	}
 }
