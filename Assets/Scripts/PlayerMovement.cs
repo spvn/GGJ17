@@ -5,8 +5,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float sidewayMovementSpeed = 5f;
 	public float maxSidewayMovement = 2.82f;
-	public float holdLimit = 1000;
 	public Vector3 boost;
+	[HideInInspector]
+	public float holdLimit;
 
 	private Vector3 startPosition;
 	private float startSpeed;
@@ -21,10 +22,13 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 		startPosition = transform.position;
 		//holdCounter = 0f;
+		holdLimit = UISobBar.maxSobriety;
 		holdCounter = holdLimit;
 	} 
 
 	void Update () {
+	//	holdLimit = UISobBar.maxSobriety;
+
 		HandleInput ();
 
 /*		if (isHolding && holdValid) {
