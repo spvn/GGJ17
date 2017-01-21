@@ -17,8 +17,4 @@ public class Asteroid : MonoBehaviour {
 	void Update () {
 		transform.position += direction * speed * Time.deltaTime;
 	}
-
-	void OnTriggerEnter (Collider2D col) {
-		Debug.Log ("what");
-	}
 }
