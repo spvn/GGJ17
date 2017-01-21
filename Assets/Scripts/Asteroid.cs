@@ -19,4 +19,10 @@ public class Asteroid : MonoBehaviour {
 		transform.position += direction * speed * Time.deltaTime;
 		transform.Rotate (Vector3.forward * rotateSpeed * Time.deltaTime);
 	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.tag == "PlayerBullet") {
+			Destroy (col.gameObject);
+		}
+	}
 }
