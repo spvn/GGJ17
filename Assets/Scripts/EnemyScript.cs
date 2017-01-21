@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour {
 	public float initialMovementTime = 1f;
 	public float movementRange = 0.1f;
 	public float hoveringSpeed = 1f;
+	public float difficultyModifier = 1f;
 
 	public GameObject bullet;
 
@@ -74,6 +75,16 @@ public class EnemyScript : MonoBehaviour {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.tag == "PlayerBullet") {
+			ObstacleManager.enemyCount--;
+			Destroy (col.gameObject);
+			Destroy (gameObject);
+
+			ObstacleManager.addDifficulty (difficultyModifier);
 		}
 	}
 }
