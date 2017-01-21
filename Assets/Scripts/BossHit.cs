@@ -38,7 +38,7 @@ public class BossHit : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "PlayerBullet") {
 			isHit = true;
-			HP -= 20f;
+			HP -= 10f;
 		}
 	}
 

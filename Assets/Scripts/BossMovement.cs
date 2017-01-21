@@ -17,7 +17,7 @@ public class BossMovement : MonoBehaviour {
 		GameEventManager.TitleScreen += Clear;
 		//GameEventManager.GameStart += Reset;
 		//GameEventManager.GameOver += Stop;
-		GameEventManager.GameWin += Stop;
+		GameEventManager.GameWin += Clear;
 	}
 
 	void Start () {
