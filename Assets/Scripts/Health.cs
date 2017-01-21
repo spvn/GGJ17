@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
 
+	public float invulnerabilityPeriod = 1f;
 	public float startingSobriety;
 	public float proportionPerHit = 0.25f;
 	public static float currentMaxSobriety;
 
+	[HideInInspector]
+	public bool isInvulnerable = false;
+
+	public Renderer renderer;
 	public GameObject damage1;
 	public GameObject damage2;
 	public GameObject damage3;
@@ -17,12 +22,15 @@ public class Health : MonoBehaviour {
 	public bool isDead = false;
 
 	private bool hasTriggerGameOver = false;
+	private float timer = 0f;
+	private Color32 redColor;
 
 	void Awake () {
 		GameEventManager.TitleScreen += ResetHealth;
 		GameEventManager.GameOver += Die;
 
 		currentMaxSobriety = startingSobriety;
+		redColor = new Color32 (255, 99, 99, 255);
 	}
 
 	void Start() {
@@ -34,6 +42,27 @@ public class Health : MonoBehaviour {
 			hasTriggerGameOver = true;
 			GameEventManager.TriggerGameOver ();
 		}
+
+		if (isInvulnerable) {
+			timer += Time.deltaTime;
+			if (timer > invulnerabilityPeriod) {
+				timer = 0f;
+				isInvulnerable = false;
+			}
+		}
+	}
+
+	IEnumerator GetHitFlash() {
+		while (timer < invulnerabilityPeriod) {
+			if (renderer.material.color == Color.white) {
+				renderer.material.SetColor ("_Color", redColor);
+			} else {
+				renderer.material.SetColor ("_Color", Color.white);
+			}
+			timer += 0.1f;
+			yield return null;
+		}
+		renderer.material.SetColor ("_Color", Color.white);
 	}
 
 	private void ResetHealth() {
@@ -52,6 +81,7 @@ public class Health : MonoBehaviour {
 	}
 
 	public virtual void reduceHealth(){
+		isInvulnerable = true;
 		currentMaxSobriety -= proportionPerHit * startingSobriety;
 
 		if (!damage2.activeSelf) {
@@ -64,6 +94,8 @@ public class Health : MonoBehaviour {
 			currentMaxSobriety = 0f;
 			isDead = true;
 		}
+
+		StartCoroutine (GetHitFlash ());
 	}
 
 	public virtual void addHealth(){
