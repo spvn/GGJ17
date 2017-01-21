@@ -16,6 +16,8 @@ public class EnemyLaser : MonoBehaviour {
 	}
 
 	private void Clear(){
-		Destroy (gameObject);
+		if (gameObject) {
+			Destroy (gameObject);
+		}
 	}
 }
