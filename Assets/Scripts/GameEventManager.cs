@@ -6,9 +6,6 @@
 	public static event GameEvent GameOver;
 	public static event GameEvent TitleScreen;
 
-	public static int difficulty;
-	public static float speed;
-
 	public static void TriggerGameStart() {
 		if (GameStart != null) {
 			GameStart ();

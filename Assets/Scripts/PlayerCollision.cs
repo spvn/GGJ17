@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour {
 
 	public Health playerHealth;
+	public Shield playerShield;
 
 	void Start () {
 		
@@ -19,12 +20,14 @@ public class PlayerCollision : MonoBehaviour {
 
 				if (pup && !pup.gotCollected) {
 					if (other.tag == "Healthpack") {
-						playerHealth.addHealth (1f);
+						playerHealth.addHealth ();
+						pup.collectPowerup ();
+					} else if (other.tag == "Shield") {
 						pup.collectPowerup ();
 					}
 				}
 			} else {
-				playerHealth.reduceHealth (1f);
+				playerHealth.reduceHealth ();
 			}
 		}
 	}
