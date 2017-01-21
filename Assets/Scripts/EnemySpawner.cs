@@ -34,10 +34,10 @@ public class EnemySpawner : MonoBehaviour {
 				float yPos;
 				if (sideToSpawn == 0) {
 					xPos = Random.Range (-7f, -4f);
-					yPos = Random.Range (2f, 8f);
+					yPos = Random.Range (6f, 9f);
 				} else if (sideToSpawn == 1) {
 					xPos = Random.Range (-7f, 7f);
-					yPos = Random.Range (6f, 9f);
+					yPos = Random.Range (2f, 8f);
 
 				} else {
 					xPos = Random.Range (4f, 7f);

@@ -8,8 +8,6 @@ public class BossEnemySpawner : MonoBehaviour {
 	public GameObject bossEnemy;
 
 	private float timer = 0f;
-	private float spawnInterval;
-
 
 	// Use this for initialization
 	void Start () {
