@@ -11,7 +11,7 @@ public class BossHit : MonoBehaviour {
 	private bool hasTriggeredWin = false;
 
 	void Avoid() {
-		GameEventManager.GameWin += Clear;
+		//GameEventManager.GameWin += Clear;
 	}
 
 	void Start () {
@@ -46,8 +46,5 @@ public class BossHit : MonoBehaviour {
 		hasTriggeredWin = true;
 		GameEventManager.TriggerGameWin ();
 	}
-
-	private void Clear() {
-		Destroy (this.gameObject);
-	}
+		
 }
