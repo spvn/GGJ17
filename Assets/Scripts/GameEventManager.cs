@@ -5,6 +5,7 @@
 	public static event GameEvent GameStart;
 	public static event GameEvent GameOver;
 	public static event GameEvent TitleScreen;
+	public static event GameEvent GameWin;
 
 	public static void TriggerGameStart() {
 		if (GameStart != null) {
@@ -21,6 +22,12 @@
 	public static void TriggerTitleScreen() {
 		if (TitleScreen != null) {
 			TitleScreen ();
+		}
+	}
+
+	public static void TriggerGameWin() {
+		if (GameWin != null) {
+			GameWin ();
 		}
 	}
 }
