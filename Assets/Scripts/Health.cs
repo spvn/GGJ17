@@ -38,6 +38,7 @@ public class Health : MonoBehaviour {
 
 	private void ResetHealth() {
 		currentMaxSobriety = startingSobriety;
+		isDead = false;
 		hasTriggerGameOver = false;
 
 		damage1.SetActive (true);

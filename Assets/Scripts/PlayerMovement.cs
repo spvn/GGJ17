@@ -20,12 +20,13 @@ public class PlayerMovement : MonoBehaviour {
 	private bool maxSobrietyChanged = false;
 
 	void Awake() {
-		GameEventManager.GameStart += StartMovement;
+		GameEventManager.TitleScreen += StartMovement;
 		GameEventManager.GameOver += StopMovement;
+
+		startPosition = transform.position;
 	}
 
 	void Start () {
-		startPosition = transform.position;
 		//holdCounter = 0f;
 		holdLimit = Health.currentMaxSobriety;
 		holdCounter = holdLimit;
@@ -69,6 +70,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void StartMovement() {
 		allowMovement = true;
+
+		transform.position = startPosition;
+		holdLimit = Health.currentMaxSobriety;
+		holdCounter = holdLimit;
+		maxSobrietyChanged = false;
+		isHolding = false;
+		holdValid = true;
+		timeCount = 0f;
 	}
 
 	private void StopMovement() {
