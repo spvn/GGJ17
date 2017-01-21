@@ -6,8 +6,6 @@
 	public static event GameEvent GameOver;
 	public static event GameEvent TitleScreen;
 
-	public static float sobriety;
-
 	public static void TriggerGameStart() {
 		if (GameStart != null) {
 			GameStart ();

@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
 
-	public float maxHealth;
+	public float startingSobriety;
+	public float proportionPerHit = 0.25f;
+	public static float currentMaxSobriety;
 
 	public GameObject damage1;
 	public GameObject damage2;
 	public GameObject damage3;
+	public GameObject explodeAnimation;
 
 	[HideInInspector]
 	public bool isDead = false;
 
-	protected float currentHealth;
 	private bool hasTriggerGameOver = false;
 
 	void Awake () {
-		GameEventManager.GameStart += ResetHealth;
+		GameEventManager.TitleScreen += ResetHealth;
+		GameEventManager.GameOver += Die;
+
+		currentMaxSobriety = startingSobriety;
 	}
 
 	void Start() {
@@ -32,16 +37,21 @@ public class Health : MonoBehaviour {
 	}
 
 	private void ResetHealth() {
-		currentHealth = maxHealth;
+		currentMaxSobriety = startingSobriety;
 		hasTriggerGameOver = false;
 
 		damage1.SetActive (true);
 		damage2.SetActive (false);
 		damage3.SetActive (false);
+		explodeAnimation.SetActive (false);
 	}
 
-	public virtual void reduceHealth(float amt){
-		currentHealth -= amt;
+	private void Die() {
+		explodeAnimation.SetActive (true);
+	}
+
+	public virtual void reduceHealth(){
+		currentMaxSobriety -= proportionPerHit * startingSobriety;
 
 		if (!damage2.activeSelf) {
 			damage2.SetActive (true);
@@ -49,14 +59,14 @@ public class Health : MonoBehaviour {
 			damage3.SetActive (true);
 		}
 
-		if (currentHealth < 0f) {
-			currentHealth = 0f;
+		if (currentMaxSobriety <= 0f) {
+			currentMaxSobriety = 0f;
 			isDead = true;
 		}
 	}
 
-	public virtual void addHealth(float amt){
-		currentHealth += amt;
+	public virtual void addHealth(){
+		currentMaxSobriety += proportionPerHit * startingSobriety;
 
 		if (damage3.activeSelf) {
 			damage3.SetActive (false);
@@ -64,16 +74,17 @@ public class Health : MonoBehaviour {
 			damage2.SetActive (false);
 		}
 
-		if (currentHealth > maxHealth) {
-			currentHealth = maxHealth;
+		if (currentMaxSobriety > startingSobriety) {
+			currentMaxSobriety = startingSobriety;
 		}
 	}
 
 	public float getHealthProportion() {
-		return currentHealth / maxHealth;
+		Debug.Log (currentMaxSobriety / startingSobriety);
+		return currentMaxSobriety / startingSobriety;
 	}
 
 	public float getCurrentHealth() {
-		return currentHealth;
+		return currentMaxSobriety;
 	}
 }
