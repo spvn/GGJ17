@@ -23,7 +23,6 @@ public class ObstacleManager : MonoBehaviour {
 			difficultyIncreaseInterval *= difficultyIncreaseMultiplier;
 		}
 
-		Debug.Log ("curr: " + enemyCount + " max: " + maxEnemyCount);
 	}
 
 	void increaseDifficulty() {
