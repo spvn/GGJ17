@@ -60,8 +60,6 @@ public class BackgroundScroll : MonoBehaviour {
 	IEnumerator randomiseColours() {
 		while (true) {
 			float hue = Mathf.PingPong (Time.time * colourSpeed, 1f);
-			Debug.Log (hue);
-
 			renderer.material.SetColor ("_Color", Color.HSVToRGB (hue, 1f, 1f));
 			yield return null;
 		}
