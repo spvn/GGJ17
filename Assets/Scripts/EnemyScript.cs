@@ -17,6 +17,8 @@ public class EnemyScript : MonoBehaviour {
 	private bool reachedPos = false;
 	private float shootTimer = 0f;
 	private Transform shootPoint;
+	private AudioSource sfx;
+	private bool sfxPlayed = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,8 @@ public class EnemyScript : MonoBehaviour {
 		targetPosition = new Vector3 (targetPosition.x, targetPosition.y, 0f);
 		origPos = transform.position;
 
+		sfx = GetComponent<AudioSource> ();
+		LerpVolume ();
 		shootPoint = transform.Find ("shootPoint");
 		//Debug.Log (origPos + " " + targetPosition);
 		StartCoroutine (moveToPos(origPos, targetPosition, initialMovementTime));
@@ -31,6 +35,7 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (reachedPos) {
 			Vector3 movementVector = new Vector3 (Random.Range (-movementRange, movementRange), Random.Range (-movementRange, movementRange), 0f);
 			Vector3 finalPos = movementVector + transform.position;
@@ -59,6 +64,7 @@ public class EnemyScript : MonoBehaviour {
 		}
 
 		reachedPos = true;
+		sfx.Stop ();
 	}
 				
 	IEnumerator shoot(int num) {
@@ -86,5 +92,18 @@ public class EnemyScript : MonoBehaviour {
 
 			ObstacleManager.addDifficulty (difficultyModifier);
 		}
+	}
+
+	void LerpVolume() {
+		sfx.volume = 0f;
+
+		float duration = 0f;
+		float totalLerpTime = 0.5f;
+
+		while (duration < totalLerpTime) {
+			sfx.volume = Mathf.Lerp (0f, 0.3f, duration / totalLerpTime);
+			duration += Time.deltaTime;
+		}
+
 	}
 }
