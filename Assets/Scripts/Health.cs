@@ -87,6 +87,7 @@ public class Health : MonoBehaviour {
 
 	private void Die() {
 		explodeAnimation.SetActive (true);
+		currentMaxSobriety = startingSobriety;
 	}
 
 	public virtual void reduceHealth(){
