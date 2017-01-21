@@ -9,7 +9,6 @@ public class BossEnemySpawner : MonoBehaviour {
 
 	private float timer = 0f;
 
-	// Use this for initialization
 	void Start () {
 		
 	}

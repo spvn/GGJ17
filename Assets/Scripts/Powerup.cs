@@ -19,7 +19,9 @@ public class Powerup : MonoBehaviour {
 
 	void Update() {
 		if (gotCollected && !collectedSfx.isPlaying) {
-			Destroy (gameObject);
+			if (gameObject) {
+				Destroy (gameObject);
+			}
 		}
 	}
 
@@ -31,6 +33,8 @@ public class Powerup : MonoBehaviour {
 	}
 
 	private void Clear(){
-		Destroy (gameObject);
+		if (gameObject) {
+	//		Destroy (gameObject);
+		}
 	}
 }

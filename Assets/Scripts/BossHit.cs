@@ -39,7 +39,6 @@ public class BossHit : MonoBehaviour {
 	}
 
 	void KillBoss(){
-
-		Destroy (gameObject);
+		GameEventManager.TriggerGameWin ();
 	}
 }
