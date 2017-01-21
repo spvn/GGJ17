@@ -12,6 +12,8 @@ public class EnemyScript : MonoBehaviour {
 
 	public GameObject bullet;
 
+	public GameObject[] powerups;
+
 	private Vector3 targetPosition;
 	private Vector3 origPos;
 	private bool reachedPos = false;
@@ -105,5 +107,11 @@ public class EnemyScript : MonoBehaviour {
 			duration += Time.deltaTime;
 		}
 
+	}
+
+	void OnDestroy() {
+		if (Random.Range (0f, 1f) < 0.5f) {
+			Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
+		}
 	}
 }
