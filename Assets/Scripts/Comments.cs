@@ -13,20 +13,28 @@ public class Comments : MonoBehaviour {
 	private bool isShowingComment = false;
 	private float showCommentTimer = 0f;
 	private float commentStayTimer = 0f;
+	private List<string> titleScreenComments;
+
+	private List<string> commentsToShow;
 
 	void Awake() {
 		GameEventManager.TitleScreen += ActivateComments;
+		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += DeactivateComments;
 	}
 
 	void Start () {
 		tm = GetComponent<TextMesh> ();
+		titleScreenComments = new List<string> ();
+		titleScreenComments.Add ("No I'm not");
+		titleScreenComments.Add ("Hold my beer.");
+		commentsToShow = titleScreenComments;
 	}
 
 	void Update () {
 		if (activateComments) {
 			if (showCommentTimer > showCommentEveryXSeconds) {
-				tm.text = comments [Random.Range (0, comments.Count)];
+				tm.text = commentsToShow [Random.Range (0, commentsToShow.Count)];
 				isShowingComment = true;
 				showCommentTimer = 0f;
 				commentStayTimer = 0f;
@@ -55,5 +63,9 @@ public class Comments : MonoBehaviour {
 
 	private void DeactivateComments() {
 		activateComments = false;
+	}
+
+	private void GameStart() {
+		commentsToShow = comments;
 	}
 }
