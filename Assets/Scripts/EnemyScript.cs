@@ -20,10 +20,11 @@ public class EnemyScript : MonoBehaviour {
 	private bool reachedPos = false;
 	private float shootTimer = 0f;
 	private Transform shootPoint;
-	private AudioSource sfx;
+	private AudioSource[] sfx;
 	private bool sfxPlayed = false;
 	private Animator animator;
 	private GameObject particleObject;
+	private bool isDestroyed = false;
 
 	// Use this for initialization
 	void Start () {
@@ -31,13 +32,15 @@ public class EnemyScript : MonoBehaviour {
 		targetPosition = new Vector3 (targetPosition.x, targetPosition.y, 0f);
 		origPos = transform.position;
 
-		sfx = GetComponent<AudioSource> ();
+		sfx = GetComponents<AudioSource> ();
 		LerpVolume ();
 		shootPoint = transform.Find ("shootPoint");
 		//Debug.Log (origPos + " " + targetPosition);
 		animator = GetComponentInChildren<Animator>();
 		particleObject = GetComponentInChildren<ParticleSystem> ().gameObject;
 		StartCoroutine (moveToPos(origPos, targetPosition, initialMovementTime));
+
+		GameEventManager.TitleScreen += Clear;
 	}
 	
 	// Update is called once per frame
@@ -71,7 +74,7 @@ public class EnemyScript : MonoBehaviour {
 		}
 
 		reachedPos = true;
-		sfx.Stop ();
+		sfx[0].Stop ();
 	}
 				
 	IEnumerator shoot(int num) {
@@ -92,14 +95,18 @@ public class EnemyScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "PlayerBullet") {
+		if (col.gameObject.tag == "PlayerBullet" && !isDestroyed) {
+			isDestroyed = true;
 			ObstacleManager.enemyCount--;
 			Destroy (col.gameObject);
 			enemyExplosion.SetActive (true);
 			GetComponent<SpriteRenderer> ().enabled = false;
 			particleObject.SetActive (false);
 			StartCoroutine(destroyAfterExplosion());
-
+			if (Random.Range (0f, 1f) < 0.5f) {
+				Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
+			}
+			sfx [1].Play ();
 			ObstacleManager.addDifficulty (difficultyModifier);
 		}
 	}
@@ -110,21 +117,23 @@ public class EnemyScript : MonoBehaviour {
 	}
 
 	void LerpVolume() {
-		sfx.volume = 0f;
+		sfx[0].volume = 0f;
 
 		float duration = 0f;
 		float totalLerpTime = 0.5f;
 
 		while (duration < totalLerpTime) {
-			sfx.volume = Mathf.Lerp (0f, 0.3f, duration / totalLerpTime);
+			sfx[0].volume = Mathf.Lerp (0f, 0.3f, duration / totalLerpTime);
 			duration += Time.deltaTime;
 		}
 
 	}
 
 	void OnDestroy() {
-		if (Random.Range (0f, 1f) < 0.5f) {
-			Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
-		}
+		GameEventManager.TitleScreen -= Clear;
+	}
+
+	void Clear() {
+		Destroy (gameObject);
 	}
 }

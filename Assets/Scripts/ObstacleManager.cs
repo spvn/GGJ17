@@ -12,7 +12,7 @@ public class ObstacleManager : MonoBehaviour {
 	public float difficultyIncreaseMultiplier = 2f;
 	// Use this for initialization
 	void Start () {
-		
+		GameEventManager.GameStart += ResetDifficulty;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +26,7 @@ public class ObstacleManager : MonoBehaviour {
 	}
 
 	void increaseDifficulty() {
+		Debug.Log ("increasing");
 		maxEnemyCount++;
 	}
 
@@ -33,5 +34,10 @@ public class ObstacleManager : MonoBehaviour {
 
 		currDifficulty += additional;
 		//Debug.Log (currDifficulty);
+	}
+
+	void ResetDifficulty() {
+		currDifficulty = 0f;
+		maxEnemyCount = 1;
 	}
 }

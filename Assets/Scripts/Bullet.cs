@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
 	public Vector3 direction = new Vector3();
 
 	void Start () {
-		
+		GetComponent<AudioSource> ().Play ();
 	}
 
 	void Update () {

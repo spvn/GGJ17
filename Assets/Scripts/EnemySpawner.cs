@@ -7,20 +7,25 @@ public class EnemySpawner : MonoBehaviour {
 	public float waveInterval = 3f;
 
 	private float timer = 0f;
-
+	private bool spawning = false;
 	public GameObject enemy;
 	// Use this for initialization
 	void Start () {
-
+		GameEventManager.TitleScreen += StopSpawning;
+		GameEventManager.GameWin += StopSpawning;
+		GameEventManager.GameOver += StopSpawning;
+		GameEventManager.GameStart += StartSpawning;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (timer < waveInterval) {
-			timer+=Time.deltaTime;
-		} else {
-			timer = 0f;
-			SpawnEnemy ();
+		if (spawning) {
+			if (timer < waveInterval) {
+				timer += Time.deltaTime;
+			} else {
+				timer = 0f;
+				SpawnEnemy ();
+			}
 		}
 	}
 
@@ -50,5 +55,12 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void StopSpawning () {
+		spawning = false;
+	}
+	void StartSpawning() {
+		spawning = true;
 	}
 }

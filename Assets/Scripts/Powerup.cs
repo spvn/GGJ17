@@ -19,7 +19,7 @@ public class Powerup : MonoBehaviour {
 	void Start() {
 		GameEventManager.GameOver += Clear;
 		GameEventManager.GameWin += Clear;
-		GameEventManager.TitleScreen += Clear;
+		//GameEventManager.TitleScreen += Clear;
 
 		sp = GetComponent<SpriteRenderer> ();
 	}

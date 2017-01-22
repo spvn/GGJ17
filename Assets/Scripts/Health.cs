@@ -88,6 +88,7 @@ public class Health : MonoBehaviour {
 
 	private void Die() {
 		explodeAnimation.SetActive (true);
+		GetComponent<AudioSource> ().Play ();
 		currentMaxSobriety = startingSobriety;
 	}
 
