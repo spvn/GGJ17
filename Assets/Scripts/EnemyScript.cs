@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour {
 	public float difficultyModifier = 1f;
 
 	public GameObject bullet;
+	public GameObject enemyExplosion;
 
 	public GameObject[] powerups;
 
@@ -21,6 +22,8 @@ public class EnemyScript : MonoBehaviour {
 	private Transform shootPoint;
 	private AudioSource sfx;
 	private bool sfxPlayed = false;
+	private Animator animator;
+	private GameObject particleObject;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +35,8 @@ public class EnemyScript : MonoBehaviour {
 		LerpVolume ();
 		shootPoint = transform.Find ("shootPoint");
 		//Debug.Log (origPos + " " + targetPosition);
+		animator = GetComponentInChildren<Animator>();
+		particleObject = GetComponentInChildren<ParticleSystem> ().gameObject;
 		StartCoroutine (moveToPos(origPos, targetPosition, initialMovementTime));
 	}
 	
@@ -90,10 +95,18 @@ public class EnemyScript : MonoBehaviour {
 		if (col.gameObject.tag == "PlayerBullet") {
 			ObstacleManager.enemyCount--;
 			Destroy (col.gameObject);
-			Destroy (gameObject);
+			enemyExplosion.SetActive (true);
+			GetComponent<SpriteRenderer> ().enabled = false;
+			particleObject.SetActive (false);
+			StartCoroutine(destroyAfterExplosion());
 
 			ObstacleManager.addDifficulty (difficultyModifier);
 		}
+	}
+
+	IEnumerator destroyAfterExplosion () {
+		yield return new WaitForSeconds (0.75f);
+		Destroy (gameObject);
 	}
 
 	void LerpVolume() {
