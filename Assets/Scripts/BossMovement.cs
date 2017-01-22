@@ -15,7 +15,7 @@ public class BossMovement : MonoBehaviour {
 
 	void Awake() {
 		GameEventManager.TitleScreen += Clear;
-		GameEventManager.GameWin += Clear;
+		GameEventManager.GameWin += WinClear;
 	}
 
 	void Start () {
@@ -36,7 +36,16 @@ public class BossMovement : MonoBehaviour {
 	}
 
 	private void Clear(){
-		Destroy (this.gameObject);
+		Destroy (gameObject);
+	}
+
+	private void WinClear(){
+		StartCoroutine(destroyAfterExplosion());
+	}
+
+	IEnumerator destroyAfterExplosion () {
+		yield return new WaitForSeconds (2f);
+		Destroy (gameObject);
 	}
 
 	private void Reset(){
@@ -51,6 +60,6 @@ public class BossMovement : MonoBehaviour {
 
 	void OnDestroy() {
 		GameEventManager.TitleScreen -= Clear;
-		GameEventManager.GameWin -= Stop;
+		GameEventManager.GameWin -= WinClear;
 	}
 }
