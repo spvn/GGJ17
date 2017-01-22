@@ -33,10 +33,10 @@ public class PlayerCollision : MonoBehaviour {
 					}
 				}
 			} else {
-				if (other.gameObject.tag == "EnemyBullet" && !playerHealth.isInvulnerable) {
+				if ((other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Asteroid") && !playerHealth.isInvulnerable) {
 					playerHealth.reduceHealth ();
 					sfx.Play ();
-				} else if (other.gameObject.tag == "EnemyBullet") {
+				} else if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Asteroid") {
 					Destroy (other.gameObject);
 				}
 			}

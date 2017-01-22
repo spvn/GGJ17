@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour {
 	private bool sfxPlayed = false;
 	private Animator animator;
 	private GameObject particleObject;
+	private bool isVulnerable = false;
 	private bool isDestroyed = false;
 
 	// Use this for initialization
@@ -75,6 +76,9 @@ public class EnemyScript : MonoBehaviour {
 
 		reachedPos = true;
 		sfx[0].Stop ();
+		if (!isVulnerable && !isDestroyed) {
+			isVulnerable = true;
+		}
 	}
 				
 	IEnumerator shoot(int num) {
@@ -95,7 +99,8 @@ public class EnemyScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "PlayerBullet" && !isDestroyed) {
+		if (col.gameObject.tag == "PlayerBullet" && isVulnerable) {
+			isVulnerable = false;
 			isDestroyed = true;
 			ObstacleManager.enemyCount--;
 			Destroy (col.gameObject);

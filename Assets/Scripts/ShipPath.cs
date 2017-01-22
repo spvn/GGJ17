@@ -29,9 +29,7 @@ public class ShipPath : MonoBehaviour {
 	}
 
 	void Update () {
-		Debug.Log ("here");
 		if (move) {
-			Debug.Log ("move");
 			timer += Time.deltaTime;
 			transform.position = startPosition + (timer / completionTime) * distance * Vector3.up
 			+ 0.1f * playerShip.position;
