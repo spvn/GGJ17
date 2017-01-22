@@ -19,9 +19,10 @@ public class BGMManager : MonoBehaviour {
 	private bool coroutineIsRunning = false;
 
 	void Start () {
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.TitleScreen += TitleScreen;
-		GameEventManager.GameOver += GameOver;
+		GameEventManager.GameStart += PlaySecondOne;
+		GameEventManager.TitleScreen += PlayFirstOne;
+		GameEventManager.GameOver += PlayFirstOne;
+		GameEventManager.GameWin += PlayFirstOne;
 
 		bgm = GetComponents<AudioSource> ();
 		for (int i = 0; i < bgm.Length; i++) {
@@ -65,15 +66,11 @@ public class BGMManager : MonoBehaviour {
 
 	}
 
-	private void TitleScreen(){
+	private void PlayFirstOne(){
 		currentBGM = 0;
 	}
 
-	private void GameStart(){
+	private void PlaySecondOne(){
 		currentBGM = 1;
-	}
-		
-	private void GameOver(){
-		currentBGM = 2;
 	}
 }
