@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class Trail : MonoBehaviour {
 
+	public PlayerMovement pm;
+
+	private TrailRenderer tr;
+
 	void Awake () {
-		GetComponent<TrailRenderer> ().sortingLayerName = "Character";
+		tr = GetComponent<TrailRenderer> ();
+		tr.sortingLayerName = "Character";
 	}
 
+	void Update(){
+		if (pm.isHolding && pm.holdValid) {
+			tr.enabled = true;
+		} else {
+			tr.enabled = false;
+		}
+	}
 }
