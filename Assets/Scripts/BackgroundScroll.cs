@@ -24,11 +24,11 @@ public class BackgroundScroll : MonoBehaviour {
 		renderer.material.mainTextureOffset = offset;
 
 		if (drunk && !isRandomising) {
-			
 			StartCoroutine (coroutine);
 			isRandomising = true;
 			//renderer.material.SetColor ("_Color", new Color32 (255, 0, 0, 255));
-		} else {
+		} else if (!drunk && isRandomising){
+
 			isRandomising = false;
 			StopCoroutine (coroutine);
 			renderer.material.SetColor ("_Color", Color.white);
