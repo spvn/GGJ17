@@ -34,6 +34,13 @@ public class EnemySpawner : MonoBehaviour {
 				SpawnEnemy ();
 			}
 		}
+		if (overallTimer > bossTime) {
+			Debug.Log (overallTimer + " " + bossTime);
+			StopSpawning ();
+		} else {
+			overallTimer += Time.deltaTime;
+		}
+
 	}
 
 	void SpawnEnemy() {
@@ -61,13 +68,7 @@ public class EnemySpawner : MonoBehaviour {
 				ObstacleManager.enemyCount++;
 			}
 		}
-
-		if (overallTimer > bossTime) {
-			StopSpawning ();
-		} else {
-			overallTimer += Time.deltaTime;
-		}
-
+			
 	}
 
 	void StopSpawning () {
