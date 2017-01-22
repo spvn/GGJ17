@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour {
 		allowMovement = true;
 
 		transform.position = startPosition;
-		holdLimit = Health.currentMaxSobriety;
+		holdLimit = GetComponentInChildren<Health>().startingSobriety; //Health.currentMaxSobriety;
 		holdCounter = holdLimit;
 		maxSobrietyChanged = false;
 		isHolding = false;
