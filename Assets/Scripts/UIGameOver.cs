@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class UIGameOver : MonoBehaviour {
 
+	public VomitSpawner vs;
+
 	private float timer = 0f;
+
+	void OnEnable(){
+		vs.SpawnVomit ();
+	}
 
 	void Update () {
 		timer += Time.deltaTime;

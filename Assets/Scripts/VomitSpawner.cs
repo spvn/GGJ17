@@ -17,7 +17,7 @@ public class VomitSpawner : MonoBehaviour {
 		
 	}
 
-	void SpawnVomit() {
+    public void SpawnVomit() {
 		
 
 		foreach (SpriteRenderer sr in renderers) {
