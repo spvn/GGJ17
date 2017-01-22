@@ -45,7 +45,7 @@ public class BossShooter : MonoBehaviour {
 
 		if (bulletShootTimer > Random.Range (0.9f * bulletShootInterval, 1.1f * bulletShootInterval)) {
 			bulletShootTimer = 0f;
-			StartCoroutine (shootBullet (3));
+			StartCoroutine (shootBullet (2));
 		} else {
 			bulletShootTimer += Time.deltaTime;
 		}

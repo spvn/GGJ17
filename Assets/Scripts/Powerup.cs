@@ -19,6 +19,7 @@ public class Powerup : MonoBehaviour {
 	void Start() {
 		GameEventManager.GameOver += Clear;
 		GameEventManager.GameWin += Clear;
+		GameEventManager.TitleScreen += Clear;
 
 		sp = GetComponent<SpriteRenderer> ();
 	}
@@ -65,6 +66,7 @@ public class Powerup : MonoBehaviour {
 	void OnDestroy() {
 		GameEventManager.GameOver -= Clear;
 		GameEventManager.GameWin -= Clear;
+		GameEventManager.TitleScreen -= Clear;
 	}
 
 	private bool isWithinView (Vector3 pos) {

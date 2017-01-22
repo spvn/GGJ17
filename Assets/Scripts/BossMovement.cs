@@ -15,8 +15,6 @@ public class BossMovement : MonoBehaviour {
 
 	void Awake() {
 		GameEventManager.TitleScreen += Clear;
-		//GameEventManager.GameStart += Reset;
-		//GameEventManager.GameOver += Stop;
 		GameEventManager.GameWin += Clear;
 	}
 

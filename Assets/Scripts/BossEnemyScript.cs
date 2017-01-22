@@ -12,6 +12,7 @@ public class BossEnemyScript : MonoBehaviour {
 	public float difficultyModifier = 1f;
 
 	public GameObject bullet;
+	public GameObject[] powerups;
 
 	private Vector3 targetPosition;
 	private Vector3 startPos;
@@ -90,6 +91,12 @@ public class BossEnemyScript : MonoBehaviour {
 			Destroy (gameObject);
 
 			ObstacleManager.addDifficulty (difficultyModifier);
+		}
+	}
+
+	void OnDestroy() {
+		if (Random.Range (0f, 1f) < 0.5f) {
+			Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
 		}
 	}
 }
