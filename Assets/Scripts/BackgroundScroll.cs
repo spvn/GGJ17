@@ -24,12 +24,10 @@ public class BackgroundScroll : MonoBehaviour {
 		renderer.material.mainTextureOffset = offset;
 
 		if (drunk && !isRandomising) {
-			Debug.Log ("fired");
 			StartCoroutine (coroutine);
 			isRandomising = true;
 			//renderer.material.SetColor ("_Color", new Color32 (255, 0, 0, 255));
 		} else if (!drunk && isRandomising){
-			Debug.Log ("unfired");
 
 			isRandomising = false;
 			StopCoroutine (coroutine);
@@ -61,7 +59,6 @@ public class BackgroundScroll : MonoBehaviour {
 
 	IEnumerator randomiseColours() {
 		while (true) {
-			Debug.Log ("in coroutine");
 			float hue = Mathf.PingPong (Time.time * colourSpeed, 1f);
 			renderer.material.SetColor ("_Color", Color.HSVToRGB (hue, 1f, 1f));
 			yield return null;
