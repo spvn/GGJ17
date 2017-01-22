@@ -87,6 +87,7 @@ public class BossEnemyScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "PlayerBullet" && isVulnerable) {
+			isVulnerable = false;
 			ObstacleManager.enemyCount--;
 			Destroy (col.gameObject);
 			Destroy (gameObject);
@@ -94,6 +95,9 @@ public class BossEnemyScript : MonoBehaviour {
 			enemyExplosion.SetActive (true);
 			GetComponent<SpriteRenderer> ().enabled = false;
 			StartCoroutine(destroyAfterExplosion());
+			if (Random.Range (0f, 1f) < 0.5f) {
+				Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
+			}
 
 			ObstacleManager.addDifficulty (difficultyModifier);
 		}
@@ -105,8 +109,6 @@ public class BossEnemyScript : MonoBehaviour {
 	}
 
 	void OnDestroy() {
-		if (Random.Range (0f, 1f) < 0.5f) {
-			Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
-		}
+		
 	}
 }
