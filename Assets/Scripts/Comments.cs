@@ -26,7 +26,7 @@ public class Comments : MonoBehaviour {
 	void Start () {
 		tm = GetComponent<TextMesh> ();
 		titleScreenComments = new List<string> ();
-		titleScreenComments.Add ("No I'm not");
+		titleScreenComments.Add ("No\nI'm not");
 		titleScreenComments.Add ("Hold my beer.");
 		commentsToShow = titleScreenComments;
 	}
@@ -57,6 +57,7 @@ public class Comments : MonoBehaviour {
 		activateComments = true;
 
 		isShowingComment = false;
+		commentsToShow = titleScreenComments;
 		showCommentTimer = 0f;
 		commentStayTimer = 0f;
 	}

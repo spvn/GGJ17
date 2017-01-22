@@ -17,7 +17,7 @@ public class Health : MonoBehaviour {
 	public GameObject damage1;
 	public GameObject damage2;
 	public GameObject damage3;
-	public GameObject explodeAnimation;
+	public GameObject explodeAnimation; 
 
 	[HideInInspector]
 	public bool isDead = false;
@@ -64,7 +64,7 @@ public class Health : MonoBehaviour {
 			} else {
 				renderer.material.SetColor ("_Color", Color.white);
 			}
-			t += 0.1f;
+			t += Time.deltaTime;
 			yield return null;
 		}
 		renderer.material.SetColor ("_Color", Color.white);

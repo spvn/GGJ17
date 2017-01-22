@@ -76,8 +76,8 @@ public class PlayerCollision : MonoBehaviour {
 			// map value to [-1, 1]
 			float x = Random.value * 2.0f - 1.0f;
 			float y = Random.value * 2.0f - 1.0f;
-			x *= 0.5f * damper;
-			y *= 0.5f * damper;
+			x *= 0.25f * damper;
+			y *= 0.25f * damper;
 
 			Camera.main.transform.position = new Vector3(x, y, originalCamPos.z);
 

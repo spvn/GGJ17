@@ -9,18 +9,24 @@ public class BackgroundScroll : MonoBehaviour {
 	public float colourSpeed = 1f;
 	private bool isRandomising = false;
 	private IEnumerator coroutine;
+	private Health health;
 
 	private MeshRenderer renderer;
 	// Use this for initialization
 	void Start () {
 		renderer = GetComponent<MeshRenderer> ();
 		coroutine = randomiseColours ();
+		health = FindObjectOfType<Health> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Vector2 offset = new Vector2 (0f, Time.time * speed);
-
+		if (health.getHealthProportion () < 0.45f) {
+			drunk = true;
+		} else {
+			drunk = false;
+		}
 		renderer.material.mainTextureOffset = offset;
 
 		if (drunk && !isRandomising) {
