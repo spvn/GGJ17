@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour {
 	public Health playerHealth;
 	public Shield playerShield;
 
-	private AudioSource[] sfx;
+	private AudioSource sfx;
 	void Start () {
 		sfx = GetComponent<AudioSource> ();
 	}
@@ -35,7 +35,7 @@ public class PlayerCollision : MonoBehaviour {
 			} else {
 				if (other.gameObject.tag == "EnemyBullet" && !playerHealth.isInvulnerable) {
 					playerHealth.reduceHealth ();
-					sfx[0].Play ();
+					sfx.Play ();
 				} else if (other.gameObject.tag == "EnemyBullet") {
 					Destroy (other.gameObject);
 				}
