@@ -10,11 +10,14 @@ public class Home : MonoBehaviour {
 	private Vector3 startPos;
 	private float timer = 0f;
 	private float dist = 0f;
+	private SpriteRenderer sp;
 
 	void Awake() {
 		GameEventManager.TitleScreen += Reset;
+		GameEventManager.GameStart += Reset;
 		GameEventManager.GameWin += Win;
 
+		sp = GetComponent<SpriteRenderer> ();
 		startPos = transform.position;
 	}
 
@@ -39,6 +42,7 @@ public class Home : MonoBehaviour {
 	}
 
 	IEnumerator WaitAWhile(){
+		sp.enabled = true;
 		yield return new WaitForSeconds (2f);
 		timer = 0f;
 		dist = 0f;
@@ -46,6 +50,7 @@ public class Home : MonoBehaviour {
 	}
 
 	void Reset() {
+		sp.enabled = false;
 		timer = 0f;
 		dist = 0f;
 		move = false;
