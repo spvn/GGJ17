@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour {
 		GameEventManager.GameStart += resetTimer;
 
 		boss = FindObjectOfType<BossSpawner> ().GetComponent<BossSpawner> ();
-		bossTime = boss.spawnTime - 5f;
+		bossTime = boss.spawnTime - 10f;
 	}
 	
 	// Update is called once per frame

@@ -40,6 +40,7 @@ public class BossEnemyScript : MonoBehaviour {
 		
 			if (isWithinView (finalPos)) {
 				reachedPos = false;
+				Debug.Log ("here");
 				StartCoroutine (moveToPos (transform.position, transform.position + movementVector, hoveringSpeed));
 			}
 
@@ -78,7 +79,7 @@ public class BossEnemyScript : MonoBehaviour {
 	private bool isWithinView (Vector3 pos) {
 		Vector3 viewportPoint = Camera.main.WorldToViewportPoint (pos);
 		//Debug.Log (viewportPoint);
-		if (viewportPoint.z > 0 && (new Rect (0.1f, 0.5f, 0.8f, 0.4f)).Contains (viewportPoint)) {
+		if (viewportPoint.z > 0 && (new Rect (0.1f, 0.1f, 0.9f, 0.9f)).Contains (viewportPoint)) {
 			return true;
 		} else {
 			return false;

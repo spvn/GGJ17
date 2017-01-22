@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour {
 		GameEventManager.TitleScreen += setIsNotInGame;
 		GameEventManager.GameOver += setIsNotInGame;
 		GameEventManager.GameWin += setIsNotInGame;
+		Screen.SetResolution(600,900,false);
 	}
 
 	void Update () {

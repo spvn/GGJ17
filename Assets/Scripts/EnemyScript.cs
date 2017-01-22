@@ -57,7 +57,7 @@ public class EnemyScript : MonoBehaviour {
 
 		}
 
-		if (shootTimer > Random.Range (0.9f * shootInterval, 1.1f * shootInterval)) {
+		if (shootTimer > Random.Range (0.9f * shootInterval, 1.1f * shootInterval) && !isDestroyed) {
 			shootTimer = 0f;
 			StartCoroutine (shoot (3));
 		} else {
@@ -82,6 +82,7 @@ public class EnemyScript : MonoBehaviour {
 	}
 				
 	IEnumerator shoot(int num) {
+		//Vector3 shootPos = shootPoint.position;
 		for (int i = 0; i < num; i++) {
 			Instantiate (bullet, shootPoint.position, Quaternion.Euler(new Vector3(0f,0f, 180f)));
 			yield return new WaitForSeconds (0.1f);
@@ -108,7 +109,7 @@ public class EnemyScript : MonoBehaviour {
 			GetComponent<SpriteRenderer> ().enabled = false;
 			particleObject.SetActive (false);
 			StartCoroutine(destroyAfterExplosion());
-			if (Random.Range (0f, 1f) < 0.5f) {
+			if (Random.Range (0f, 1f) < 0.6f) {
 				Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
 			}
 			sfx [1].Play ();

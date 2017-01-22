@@ -25,9 +25,6 @@ public class BGMManager : MonoBehaviour {
 		GameEventManager.GameWin += PlayFirstOne;
 
 		bgm = GetComponents<AudioSource> ();
-		for (int i = 0; i < bgm.Length; i++) {
-			bgm [i].spatialBlend = 1f;
-		}
 
 		// Play title screen music first
 		if (0 < bgm.Length) {

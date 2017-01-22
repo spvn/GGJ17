@@ -10,7 +10,7 @@ public class VomitSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		renderers = GetComponentsInChildren<SpriteRenderer> ();
-		SpawnVomit ();
+		//SpawnVomit ();
 	}
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +31,7 @@ public class VomitSpawner : MonoBehaviour {
 
 	IEnumerator fadeOut() {
 
-		yield return new WaitForSeconds (2f);
+		yield return new WaitForSeconds (1f);
 
 		float duration = 0f;
 		float totalTime = 1f;
