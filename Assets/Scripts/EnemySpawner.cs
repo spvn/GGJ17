@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour {
 	private float overallTimer = 0f;
 	private BossSpawner boss;
 	private bool spawning = false;
+	private float bossTime;
 	public GameObject enemy;
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,7 @@ public class EnemySpawner : MonoBehaviour {
 		GameEventManager.GameStart += resetTimer;
 
 		boss = FindObjectOfType<BossSpawner> ().GetComponent<BossSpawner> ();
+		bossTime = boss.spawnTime - 5f;
 	}
 	
 	// Update is called once per frame
@@ -60,7 +62,7 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 
-		if (overallTimer > boss.spawnTime) {
+		if (overallTimer > bossTime) {
 			StopSpawning ();
 		} else {
 			overallTimer += Time.deltaTime;
