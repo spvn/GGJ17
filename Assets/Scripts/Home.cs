@@ -14,10 +14,12 @@ public class Home : MonoBehaviour {
 	void Awake() {
 		GameEventManager.TitleScreen += Reset;
 		GameEventManager.GameWin += Win;
+
+		startPos = transform.position;
 	}
 
 	void Start () {
-		startPos = transform.position;
+		
 	}
 
 	void Update () {
