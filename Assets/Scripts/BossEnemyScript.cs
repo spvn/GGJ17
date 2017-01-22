@@ -13,6 +13,7 @@ public class BossEnemyScript : MonoBehaviour {
 
 	public GameObject bullet;
 	public GameObject[] powerups;
+	public GameObject enemyExplosion;
 
 	private Vector3 targetPosition;
 	private Vector3 startPos;
@@ -90,8 +91,17 @@ public class BossEnemyScript : MonoBehaviour {
 			Destroy (col.gameObject);
 			Destroy (gameObject);
 
+			enemyExplosion.SetActive (true);
+			GetComponent<SpriteRenderer> ().enabled = false;
+			StartCoroutine(destroyAfterExplosion());
+
 			ObstacleManager.addDifficulty (difficultyModifier);
 		}
+	}
+
+	IEnumerator destroyAfterExplosion () {
+		yield return new WaitForSeconds (0.75f);
+		Destroy (gameObject);
 	}
 
 	void OnDestroy() {
