@@ -12,8 +12,10 @@ public class PlayerMovement : MonoBehaviour {
 	private bool allowMovement = true;
 	private Vector3 startPosition;
 	private float startSpeed;
-	private bool isHolding = false;
-	private bool holdValid = true;
+	[HideInInspector]
+	public bool isHolding = false;
+	[HideInInspector]
+	public bool holdValid = true;
 	private float holdCounter;
 	private float timeCount = 0f;
 

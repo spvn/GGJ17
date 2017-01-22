@@ -8,6 +8,10 @@ public class BossHit : MonoBehaviour {
 	public bool isHit;
 	public float HP = 100f;
 
+	public GameObject explosion1;
+	public GameObject explosion2;
+	public GameObject explosion3;
+
 	private bool hasTriggeredWin = false;
 
 	void Avoid() {
@@ -16,6 +20,10 @@ public class BossHit : MonoBehaviour {
 
 	void Start () {
 		rend = this.GetComponent<Renderer> ();
+
+		explosion1.SetActive (false);
+		explosion2.SetActive (false);
+		explosion3.SetActive (false);
 	}
 
 	void Update () {
@@ -44,6 +52,11 @@ public class BossHit : MonoBehaviour {
 
 	void KillBoss(){
 		hasTriggeredWin = true;
+
+		explosion1.SetActive (true);
+		explosion2.SetActive (true);
+		explosion3.SetActive (true);
+
 		GameEventManager.TriggerGameWin ();
 	}
 		
