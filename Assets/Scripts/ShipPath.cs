@@ -21,6 +21,7 @@ public class ShipPath : MonoBehaviour {
 		GameEventManager.GameWin += StopMovement;
 
 		startPosition = transform.position;
+		distance = destination.position.y - startPosition.y;
 	}
 	
 	void Start(){
