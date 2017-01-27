@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 		if (overallTimer > bossTime) {
-			Debug.Log (overallTimer + " " + bossTime);
+			//Debug.Log (overallTimer + " " + bossTime);
 			StopSpawning ();
 		} else {
 			overallTimer += Time.deltaTime;

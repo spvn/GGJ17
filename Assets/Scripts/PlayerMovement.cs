@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
 				transform.position.z
 			);
 		}
-			Debug.Log (holdLimit);
+			//Debug.Log (holdLimit);
 	}
 
 	private void StartMovement() {

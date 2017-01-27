@@ -109,7 +109,7 @@ public class EnemyScript : MonoBehaviour {
 			GetComponent<SpriteRenderer> ().enabled = false;
 			particleObject.SetActive (false);
 			StartCoroutine(destroyAfterExplosion());
-			if (Random.Range (0f, 1f) < 0.6f) {
+			if (Random.Range (0f, 1f) < 0.5f) {
 				Instantiate (powerups [Random.Range (0, powerups.Length)], transform.position, Quaternion.identity);
 			}
 			sfx [1].Play ();

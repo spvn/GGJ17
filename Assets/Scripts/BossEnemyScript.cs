@@ -21,12 +21,15 @@ public class BossEnemyScript : MonoBehaviour {
 	private float shootTimer = 0f;
 	private Transform shootPoint;
 	private bool isVulnerable = false;
+	private GameObject particleObject;
+
 
 	// Use this for initialization
 	void Start () {
 		targetPosition = this.transform.position - new Vector3(0f,3f,0f);
 		targetPosition = new Vector3 (targetPosition.x, targetPosition.y, 0f);
 		startPos = transform.position;
+		particleObject = GetComponentInChildren<ParticleSystem> ().gameObject;
 
 		shootPoint = transform.Find ("shootPoint");
 		StartCoroutine (moveToPos(startPos, targetPosition, initialMovementTime));
@@ -91,9 +94,10 @@ public class BossEnemyScript : MonoBehaviour {
 			isVulnerable = false;
 			ObstacleManager.enemyCount--;
 			Destroy (col.gameObject);
-			Destroy (gameObject);
 
 			enemyExplosion.SetActive (true);
+			particleObject.SetActive (false);
+
 			GetComponent<SpriteRenderer> ().enabled = false;
 			StartCoroutine(destroyAfterExplosion());
 			if (Random.Range (0f, 1f) < 0.5f) {

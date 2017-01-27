@@ -58,6 +58,7 @@ public class PlayerShoot : MonoBehaviour {
 
 	private void StopShooting() {
 		allowShooting = false;
+		shootInterval = originalShootInterval;
 	}
 		
 	void Shoot() {
